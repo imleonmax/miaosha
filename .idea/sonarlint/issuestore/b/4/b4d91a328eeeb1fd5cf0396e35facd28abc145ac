@@ -1,0 +1,28 @@
+
+i
+java:S1128"GRemove this unused import 'org.apache.tomcat.util.security.MD5Encoder'.(­ÿ»ıÿÿÿÿ8Ö’ú‡¥.
+d
+java:S2259z"GA "NullPointerException" could be thrown; "userModel" is nullable here.(ˆ‹Òé8Ü¾š€¥.
+`
+java:S3752r">Add a "method" parameter to this "@RequestMapping" annotation.(÷®ïîüÿÿÿÿ8üÆÙü¤.
+R
+java:S1191"5Use classes from the Java API instead of Sun classes.(ëŞï®8½î‡¥.
+g
+java:S4488:"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ê°­§8®”³…¥.
+f
+java:S4488`"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(â«‚8Ï·Ò‚¥.
+:
+java:S2119d"Save and re-use this "Random".(¼İÅf8¥¬Ô€¥.
+\
+java:S24416"?Make "UserModel" serializable or don't store it in the session.(©˜‰8ÆîÜË¥.
+¦
+java:S1130t"ƒRemove the declaration of thrown exception 'com.miaoshaproject.error.BusinessException', as it cannot be thrown from method's body.(ì¼’ñûÿÿÿÿ8Åš˜€¥.
+{
+java:S1488Z"^Immediately return this expression instead of assigning it to the temporary variable "newStr".(ªÄù²8 ï÷‡¥.
+g
+java:S4488("JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(®ı‘°8şú·ˆ¥.
+N
+java:S1874M",Remove this use of "Byte"; it is deprecated.(ÌÌ–ıÿÿÿÿ8èÀğ†¥.
+V
+java:S4719Z"9Replace charset name argument with StandardCharsets.UTF_8(ªÄù²8 ï÷‡¥.
+U	java:S106n"9Replace this use of System.out or System.err by a logger.(œŸ§ª8Ë´µ¥.

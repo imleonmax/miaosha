@@ -1,0 +1,11 @@
+
+^
+java:S1128"ARemove this unused import 'com.miaoshaproject.dao.PromoDOMapper'.(şó 8Ë¥ªÎ¥.
+f
+java:S2259O"DA "NullPointerException" could be thrown; "itemDO" is nullable here.(»æîãıÿÿÿÿ8ÚÊ•¬¥.
+‚
+java:S1488Z"eImmediately return this expression instead of assigning it to the temporary variable "itemModelList".(ÎÂ¶¬8ğ×½´¥.
+~
+java:S1488\"aImmediately return this expression instead of assigning it to the temporary variable "itemModel".(„ÎÔ¨8‘Î¼´¥.
+]
+java:S1126y"AReplace this if-then-else statement by a single return statement.(œ¬·?8‡é¶¥.

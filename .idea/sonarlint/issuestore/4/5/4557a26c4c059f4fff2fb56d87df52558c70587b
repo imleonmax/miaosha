@@ -1,9 +1,0 @@
-
-{
-java:S1488B"^Immediately return this expression instead of assigning it to the temporary variable "itemVO".(³ÐÔ„8ï›Ç´¥.
-j
-java:S4488="HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ž˜æÏüÿÿÿÿ8Ã«¡´¥.
-l
-java:S4488 "JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ù˜ïçýÿÿÿÿ8ùˆÖ³¥.
-d
-java:S44885"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¶¾û28æàò³¥.

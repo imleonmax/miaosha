@@ -1,7 +1,0 @@
-
-c
-java:S1128"FRemove this unused import 'org.springframework.core.annotation.Order'.(Ö¨æ8§×·¥.
-~
-java:S2229d"\"generateOrderNo's" @Transactional requirement is incompatible with the one for this method.( ëŸúÿÿÿÿ8«èÛÉ¥.
-V
-java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ8Â£·¥.

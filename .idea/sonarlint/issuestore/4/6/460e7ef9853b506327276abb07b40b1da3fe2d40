@@ -1,8 +1,0 @@
-
-H
-java:S1128"-Remove this unused import 'java.time.Period'.(šÉ¢½8æÓºû¤.
-{
-java:S1128"[Remove this unused import 'org.springframework.boot.autoconfigure.EnableAutoConfiguration'.(æèşŞøÿÿÿÿ8ö£µû¤.
-X	java:S106"9Replace this use of System.out or System.err by a logger.(½¦ÿÿÿÿÿ8 ä¤.
-^
-java:S3752">Add a "method" parameter to this "@RequestMapping" annotation.(Í¹‹£øÿÿÿÿ8ÕÄú¤.

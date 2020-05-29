@@ -1,7 +1,0 @@
-
-`
-java:S1854,">Remove this useless assignment to local variable "orderModel".(™Òù·üÿÿÿÿ8¸‹…Ê¥.
-l
-java:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Èâ¥Êûÿÿÿÿ8ø³ÂÊ¥.
-Q
-java:S1481,"/Remove this unused "orderModel" local variable.(™Òù·üÿÿÿÿ8„­†Ê¥.

@@ -70,6 +70,9 @@ public class ItemController extends BaseController {
     }
 
     private ItemVO convertVOFromModel(ItemModel itemModel) {
+        if(itemModel == null){
+            return null;
+        }
         ItemVO itemVO = new ItemVO();
         BeanUtils.copyProperties(itemModel, itemVO);
         if (itemModel.getPromoModel() != null) {

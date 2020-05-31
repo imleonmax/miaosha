@@ -6,6 +6,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * @Description :
@@ -13,7 +14,8 @@ import javax.validation.constraints.NotNull;
  * @Date: 2020-05-26 13:50
  */
 @Data
-public class UserModel {
+public class UserModel implements Serializable {
+    private static final long serialVersionUID = -3912823064679683828L;
     private Integer id;
 
     @NotBlank(message = "姓名不能为空")

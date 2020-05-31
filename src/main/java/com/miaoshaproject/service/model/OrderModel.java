@@ -2,6 +2,7 @@ package com.miaoshaproject.service.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -11,7 +12,8 @@ import java.math.BigDecimal;
  */
 //用户下单的交易模型
 @Data
-public class OrderModel {
+public class OrderModel implements Serializable {
+    private static final long serialVersionUID = -7312627170707083559L;
     //企业级一般用String类型，而不是int
     private String id;
 

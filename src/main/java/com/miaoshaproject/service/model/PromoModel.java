@@ -3,6 +3,7 @@ package com.miaoshaproject.service.model;
 import lombok.Data;
 import org.joda.time.DateTime;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -11,7 +12,8 @@ import java.math.BigDecimal;
  * @Date: 2020-05-28 12:40
  */
 @Data
-public class PromoModel {
+public class PromoModel implements Serializable {
+    private static final long serialVersionUID = 7918068595307003894L;
     private Integer id;
 
     //秒杀活动状态，1表示还未开始，2表示进行中，3表示已结束

@@ -2,10 +2,14 @@ package com.miaoshaproject.service.impl;
 
 import com.miaoshaproject.dao.PromoDOMapper;
 import com.miaoshaproject.dataobject.PromoDO;
+import com.miaoshaproject.error.BusinessException;
+import com.miaoshaproject.error.EmBusinessError;
 import com.miaoshaproject.service.ItemService;
 import com.miaoshaproject.service.PromoService;
+import com.miaoshaproject.service.UserService;
 import com.miaoshaproject.service.model.ItemModel;
 import com.miaoshaproject.service.model.PromoModel;
+import com.miaoshaproject.service.model.UserModel;
 import org.joda.time.DateTime;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +17,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Description :
@@ -30,18 +36,21 @@ public class PromoServiceImpl implements PromoService {
     @Autowired
     private ItemService itemService;
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public PromoModel getPromoByItemId(Integer itemId) {
         //获取对应商品的秒杀信息
         PromoDO promoDO = promoDOMapper.selectByItemId(itemId);
-        PromoModel promoModel = convertFromPromoDO(promoDO);
+        PromoModel promoModel = convertFromDataObject(promoDO);
         if (promoDO == null) {
             return null;
         }
         //判断当前时间是否秒杀或者正在开始
-        if(promoModel.getStartDate().isAfterNow()){
+        if (promoModel.getStartDate().isAfterNow()) {
             promoModel.setStatus(1);
-        } else if(promoModel.getEndDate().isBeforeNow()) {
+        } else if (promoModel.getEndDate().isBeforeNow()) {
             promoModel.setStatus(3);
         } else {
             promoModel.setStatus(2);
@@ -61,10 +70,63 @@ public class PromoServiceImpl implements PromoService {
         ItemModel itemModel = itemService.getItemById(promoDO.getItemId());
 
         //将库存同步到redis内
-        redisTemplate.opsForValue().set("promo_item_stock_"+itemModel.getId(), itemModel.getStock());
+        redisTemplate.opsForValue().set("promo_item_stock_" + itemModel.getId(), itemModel.getStock());
+
+        //将大闸的限制数字设到redis内
+        redisTemplate.opsForValue().set("promo_door_count_" + promoId, itemModel.getStock().intValue() * 5);
     }
 
-    private PromoModel convertFromPromoDO(PromoDO promoDO) {
+    @Override
+    public String generateSecondKillToken(Integer promoId, Integer itemId, Integer userId) {
+
+        if (redisTemplate.hasKey("promo_item_stock_invalid_" + itemId)) {
+            throw null;
+        }
+
+        //获取对应商品的秒杀信息
+        PromoDO promoDO = promoDOMapper.selectByPrimaryKey(promoId);
+        PromoModel promoModel = convertFromDataObject(promoDO);
+        if (promoDO == null) {
+            return null;
+        }
+        //判断当前时间是否秒杀或者正在开始
+        if (promoModel.getStartDate().isAfterNow()) {
+            promoModel.setStatus(1);
+        } else if (promoModel.getEndDate().isBeforeNow()) {
+            promoModel.setStatus(3);
+        } else {
+            promoModel.setStatus(2);
+        }
+        //判断活动是否正在进行
+        if (promoModel.getStatus().intValue() != 2) {
+            return null;
+        }
+        //判断item信息是否存在
+        ItemModel itemModel = itemService.getItemByIdInCache(itemId);
+        if (itemModel == null) {
+            return null;
+        }
+        //判断用户信息是否存在
+        UserModel userModel = userService.getUserByIdInCache(userId);
+        if (userModel == null) {
+            return null;
+        }
+
+        //获取秒杀大闸的count数量
+        long result = redisTemplate.opsForValue().increment("promo_door_count_" + promoId, -1);
+        if (result < 0) {
+            return null;
+        }
+        //生成token并且存入redis内并给一个5分钟的有效期
+        String token = UUID.randomUUID().toString().replace("-", "");
+
+        redisTemplate.opsForValue().set("promo_token_" + promoId + "_userid_" + userId + "_itemid_" + itemId, token);
+        redisTemplate.expire("promo_token_" + promoId + "_userid_" + userId + "_itemid_" + itemId, 5, TimeUnit.MINUTES);
+
+        return token;
+    }
+
+    private PromoModel convertFromDataObject(PromoDO promoDO) {
         if (promoDO == null) {
             return null;
         }

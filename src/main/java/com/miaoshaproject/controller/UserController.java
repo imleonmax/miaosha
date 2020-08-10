@@ -27,7 +27,6 @@ import java.util.concurrent.TimeUnit;
 /**
  * @Description :
  * @Author : LiuXinyu
- * @Date: 2020-05-26 13:28
  */
 @Controller("user")
 @RequestMapping("/user")
@@ -116,7 +115,6 @@ public class UserController extends BaseController {
 
         //将OTP验证码同用户的手机号关联,使用httpSession的方式绑定他的手机号与OTPCode
         httpServletRequest.getSession().setAttribute(telphone, otpCode);
-
 
         //将OTP验证码通过短信通道发送给用户，省略
         System.out.println("telphone = " + telphone + " &otpCode = " + otpCode);

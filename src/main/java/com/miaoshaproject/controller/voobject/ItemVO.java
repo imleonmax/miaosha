@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 /**
  * @Description :
  * @Author : LiuXinyu
- * @Date: 2020-05-27 21:44
  */
 @Data
 public class ItemVO {

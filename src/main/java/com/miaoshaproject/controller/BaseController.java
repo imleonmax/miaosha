@@ -15,7 +15,6 @@ import java.util.Map;
 /**
  * @Description :
  * @Author : LiuXinyu
- * @Date: 2020-05-26 16:12
  */
 public class BaseController {
     public static final String CONTENT_TYPE_FORMED = "application/x-www-form-urlencoded";

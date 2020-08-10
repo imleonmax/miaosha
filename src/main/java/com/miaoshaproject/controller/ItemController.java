@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 /**
  * @Description :
  * @Author : LiuXinyu
- * @Date: 2020-05-27 21:43
  */
 @RequestMapping("/item")
 @Controller("/item")
@@ -78,7 +77,7 @@ public class ItemController extends BaseController {
         //先取本地缓存
         itemModel = (ItemModel) cacheService.getFromCommonCache("item_" + id);
 
-        if (itemModel == null) {
+//        if (itemModel == null) {
             //根据商品的id到redis内获取
             itemModel = (ItemModel) redisTemplate.opsForValue().get("item_" + id);
 
@@ -91,7 +90,7 @@ public class ItemController extends BaseController {
             }
             //填充本地缓存
             cacheService.setCommonCache("item_"+id,itemModel);
-        }
+//        }
 
 
 

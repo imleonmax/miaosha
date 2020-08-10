@@ -3,6 +3,7 @@ package com.miaoshaproject.error;
 //包装器业务异常类实现
 public class BusinessException extends Exception implements CommonError {
 
+    private static final long serialVersionUID = -8070637535181853563L;
     private CommonError commonError;
 
     //直接接受EmBizError的传参，用于构造业务异常

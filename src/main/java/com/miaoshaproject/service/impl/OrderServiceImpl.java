@@ -18,6 +18,7 @@ import com.miaoshaproject.validator.ValidatorImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,6 +56,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private ValidatorImpl validator;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Override
     @Transactional
@@ -90,6 +93,10 @@ public class OrderServiceImpl implements OrderService {
         }*/
         //2.落单减库存
         boolean result = itemService.decreaseStock(itemId, amount);
+        itemModel.setStock(itemModel.getStock() - amount);
+        itemModel.setSales(itemModel.getSales()+amount);
+        redisTemplate.opsForValue().set("item_" + itemId, itemModel);
+        System.out.println(itemModel);
         if (!result) {
             throw new BusinessException(EmBusinessError.STOCK_NOT_ENOUGH);
         }

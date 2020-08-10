@@ -31,8 +31,6 @@ import java.util.stream.Collectors;
 
 /**
  * @Description :
- * @Author : LiuXinyu
- * @Date: 2020-05-27 15:09
  */
 @Service
 public class ItemServiceImpl implements ItemService {

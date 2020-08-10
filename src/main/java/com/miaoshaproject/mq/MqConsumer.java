@@ -20,7 +20,6 @@ import java.util.Map;
 /**
  * @Description :
  * @Author : LiuXinyu
- * @Date: 2020-06-01 21:00
  */
 @Component
 public class MqConsumer {

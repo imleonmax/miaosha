@@ -5,7 +5,6 @@ import lombok.Data;
 /**
  * @Description :
  * @Author : LiuXinyu
- * @Date: 2020-05-26 14:26
  */
 @Data
 public class CommonReturnType {

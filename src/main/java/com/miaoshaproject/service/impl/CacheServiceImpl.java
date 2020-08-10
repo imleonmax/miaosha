@@ -11,7 +11,6 @@ import java.util.concurrent.TimeUnit;
 /**
  * @Description :
  * @Author : LiuXinyu
- * @Date: 2020-05-31 13:08
  */
 @Service
 public class CacheServiceImpl implements CacheService {
@@ -27,7 +26,7 @@ public class CacheServiceImpl implements CacheService {
                 //设置缓存中最大可以存储100个KEY,超过100个之后会按照LRU的策略移除缓存项
                 .maximumSize(100)
                 //设置写缓存后多少秒过期
-                .expireAfterWrite(60, TimeUnit.SECONDS).build();
+                .expireAfterWrite(1, TimeUnit.SECONDS).build();
     }
 
     @Override

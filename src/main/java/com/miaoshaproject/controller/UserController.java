@@ -130,13 +130,10 @@ public class UserController extends BaseController {
         if (userModel == null) {
 //            throw new BusinessException(EmBusinessError.USER_NOT_EXIST);
             userModel.setEncrptPassword("123");
-
         }
-
         //将核心领域模型用户对象转会为ui使用的对象
         UserVO userVO = convertFromModel(userModel);
         return CommonReturnType.create(userVO);
-
     }
 
     private UserVO convertFromModel(UserModel userModel) {

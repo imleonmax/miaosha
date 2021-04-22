@@ -89,7 +89,6 @@ public class OrderServiceImpl implements OrderService {
             } else if (itemModel.getPromoModel().getStatus() != 2) {
                 throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "活动信息不正确,活动未开始");
             }
-
         }*/
         //2.落单减库存
         boolean result = itemService.decreaseStock(itemId, amount);

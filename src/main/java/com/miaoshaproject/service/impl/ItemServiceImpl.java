@@ -98,7 +98,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<ItemModel> listItem() {
+    public List<ItemModel>  listItem() {
         List<ItemDO> itemDOList = itemDOMapper.listItem();
         List<ItemModel> itemModelList = itemDOList.stream().map(itemDO -> {
             ItemStockDO itemStockDO = itemStockDOMapper.selectByItemId(itemDO.getId());
@@ -129,10 +129,10 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemModel getItemByIdInCache(Integer id) {
-        ItemModel itemModel = (ItemModel) redisTemplate.opsForValue().get("item_" + id);
+        ItemModel itemModel = (ItemModel) redisTemplate.opsForValue().get("item_validate_" + id);
         if (itemModel == null) {
             itemModel = this.getItemById(id);
-            redisTemplate.opsForValue().set("item_" + id, itemModel);
+            redisTemplate.opsForValue().set("item_validate_" + id, itemModel);
             redisTemplate.expire("item_validate_" + id, 10, TimeUnit.MINUTES);
         }
         return itemModel;
@@ -145,14 +145,14 @@ public class ItemServiceImpl implements ItemService {
         long result = redisTemplate.opsForValue().increment("promo_item_stock_" + itemId, amount.intValue() * -1);
         if (result > 0) {
             return true;
-        }else if(result == 0){
+        } else if (result == 0) {
             //打上库存已售罄的标识
-            redisTemplate.opsForValue().set("promo_item_stock_invalid_"+itemId,"true");
+            redisTemplate.opsForValue().set("promo_item_stock_invalid_" + itemId, "true");
             //更新库存成功
             return true;
-        }else{
+        } else {
             //更新库存失败
-            increaseStock(itemId,amount);
+            increaseStock(itemId, amount);
             return false;
         }
 

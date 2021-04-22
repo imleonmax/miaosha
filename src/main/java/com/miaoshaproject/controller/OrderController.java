@@ -139,7 +139,7 @@ public class OrderController extends BaseController {
         if (!orderCreateRateLimiter.tryAcquire()) {
             throw new BusinessException(EmBusinessError.RATELIMIT);
         }
-
+        //获取前端传过来的token
         String token = httpServletRequest.getParameterMap().get("token")[0];
         if (StringUtils.isEmpty(token)) {
             throw new BusinessException(EmBusinessError.USER_NOT_LOGIN, "用户还未登录，不能下单");
@@ -166,7 +166,6 @@ public class OrderController extends BaseController {
 
         //获取用户登陆信息
 //        UserModel userModel = (UserModel) httpServletRequest.getSession().getAttribute("LOGIN_USER");
-
 
         //同步调用线程池的submit方法
         //拥塞窗口为20的等待队列，用来队列化泄洪

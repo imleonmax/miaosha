@@ -65,7 +65,7 @@ public class MqProducer {
                 Integer amount = (Integer) ((Map) arg).get("amount");
                 String stockLogId = (String) ((Map) arg).get("stockLogId");
                 try {
-                    orderService.createOrder(userId, itemId, promoId, amount, stockLogId);
+                     orderService.createOrder(userId, itemId, promoId, amount, stockLogId);
                 } catch (BusinessException e) {
                     e.printStackTrace();
                     //设置对应的stockLog为回滚状态
@@ -117,7 +117,6 @@ public class MqProducer {
                 JSON.toJSON(bodyMap).toString().getBytes(Charset.forName("UTF-8")));
         TransactionSendResult sendResult = null;
         try {
-
             sendResult = transactionMQProducer.sendMessageInTransaction(message, argsMap);
         } catch (MQClientException e) {
             e.printStackTrace();

@@ -13,7 +13,6 @@ import java.util.Random;
 /**
  * @Description : 验证码
  * @Author : LiuXinyu
- * @Date: 2020-06-06 18:07
  */
 public class CodeUtil {
     private static int width = 90;// 定义图片的width
